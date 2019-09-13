@@ -1,31 +1,54 @@
-import React, { useState, useReducer } from 'react';
-// import { initialState, todoReducer } from "../../Reducers/todoReducer.js"
-
-const SmurfForm = () => {
-    const [add, setAdd] = useState({
-
-    });
-    // const [state, dispatch] = useReducer(todoReducer, initialState);
+import React, { useState, useEffect } from 'react';
 
 
+const SmurfForm = props => {
+    const [name, setSmurfName] = useState("")
+    const [age, setSmurfAge] = useState("")
+    const [height, setSmurfHeight] = useState("")
+    const [add, setAdd] = useState({ name, age, height })
 
-    const handleChange = event => {
+
+    useEffect(()=>{
+        setAdd({ name, age, height })
+    },[age, name, height]
+    )
+    
+    // const [add, setAdd] = useState({
+
+
+
+    //     name: "",
+    //     age: "",
+    //     height: "",
+
+
+
+
+    // });
+
+
+
+
+    // const handleChange = event => {
+
+    //     setAdd(event.target.value);
+
+
+
+    // };
+
+    const handlesubmit = event => {
+        console.log (add)
         event.preventDefault();
-        setAdd(event.target.value);
-    };
+        props.addSmurf(add);
+        setAdd({
+            name: "",
+            age: "",
+            height: "",
 
-    // const handleSubmit = event => {
-    //     event.preventDefault();
-    //     dispatch({ type: "ADD_TODO", payload: todo });
-    //     setNew("");
-    //     console.log(state)
-    // }
-    // const completed = event => {
-    //     event.preventDefault();
-    //     dispatch({ type: "NOW_COMPLETED" });
+        })
 
-    // }
-
+    }
 
 
 
@@ -35,22 +58,25 @@ const SmurfForm = () => {
         <form>
             <input
                 name="name"
-                value={add.name}
+                // value={smurfName}
                 placeholder='name'
-                onchange={handleChange}            />
+                onChange={(event)=> setSmurfName(event.target.value)}  />
             <input
                 name="age"
-                value={add.age}
+                // value={smurfAge}
                 placeholder='age'
-                onchange={handleChange}  
+                onChange={(event)=> setSmurfAge(event.target.value)} 
             />
             <input
                 name="height"
-                value={add.height}
+                // value={smurfHeight}
                 placeholder='height'
-                onchange={handleChange}  
+                onChange={(event)=> setSmurfHeight(event.target.value)} 
             />
-            <button>Add a smurf</button>
+
+
+            <button onClick={handlesubmit}
+            >Add a smurf</button>
 
         </form>
     )

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getSmurf } from "../actions/index.js"
+import { getSmurf, addSmurf } from "../actions/index.js"
 import People from './people.js'
 import SmurfForm from './AddASmurf.js'
 
@@ -39,7 +39,7 @@ onchange=''
  <button>Add a smurf</button>
 
             </form> */}
-           < SmurfForm />
+           < SmurfForm addSmurf={props.addSmurf} />
             {props.smurf.map(person=>(
                 <People
                 name={person.name}
@@ -66,6 +66,6 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { getSmurf }
+    { getSmurf, addSmurf }
     
 )(SmurfVillage);

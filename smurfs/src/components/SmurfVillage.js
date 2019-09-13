@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getSmurf } from "../actions/index.js"
 import People from './people.js'
+import SmurfForm from './AddASmurf.js'
 
-// ({ getSmurf, smurf, isFetching, error })
 const SmurfVillage = (props)=> {
     useEffect(() => {
 
-        getSmurf();
+        props.getSmurf();
     }, [getSmurf]);
 
     if (props.isFetching) {
@@ -16,16 +16,39 @@ const SmurfVillage = (props)=> {
 
     return (
         <div className="parentdiv">
-            <h2 > Smurfs  </h2>
+            
+            {/* <form>
+<input
+name="name"
+value=""
+placeholder='name'
+onchange=''
+/>
+<input
+name="age"
+value=""
+placeholder='age'
+onchange=''
+/>
+<input
+name="height"
+value=""
+placeholder='height'
+onchange=''
+/>
+ <button>Add a smurf</button>
 
+            </form> */}
+           < SmurfForm />
             {props.smurf.map(person=>(
                 <People
                 name={person.name}
                 age={person.age}
+                height={person.height}
                 />
             ))}
 
-            {/* <h2 > 1.{smurf.name}  </h2> */}
+            
 
         </div>
     );
@@ -44,4 +67,5 @@ const mapStateToProps = state => {
 export default connect(
     mapStateToProps,
     { getSmurf }
+    
 )(SmurfVillage);

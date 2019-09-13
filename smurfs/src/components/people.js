@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { connect } from "react-redux";
 import { getSmurf } from "../actions/index.js"
@@ -9,9 +7,10 @@ import { getSmurf } from "../actions/index.js"
   return(
 
     <div>
+        <h1>Smurf people</h1>
         <h3>Name:{props.name}</h3>
-        <h3>age:{props.age}</h3>
-
+        <h3>Age:{props.age}</h3>
+        <h3>Height:{props.height}</h3>
     </div>
 
   )

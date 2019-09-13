@@ -1,6 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./components/App";
+import App from "./components/App.js";
+import { createStore, applyMiddleware, compose } from "redux"
+import { Provider } from "react-redux"
+import thunk from "redux-thunk"
+import {reducer} from "./reducers/index.js"
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const smurfState = createStore(
+  reducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<Provider store={smurfState}><App /></Provider>, rootElement);
